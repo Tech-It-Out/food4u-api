@@ -110,15 +110,20 @@ router.patch('/examples/:id', requireToken, removeBlanks, (req, res, next) => {
 })
 
 // DESTROY
-// DELETE /examples/5a7db6c74d55bc51bdf39793
-router.delete('/examples/:id', requireToken, (req, res, next) => {
-  Example.findById(req.params.id)
+// DELETE
+router.delete('/orders/:orderId/orderItem/:orderItemId', requireToken, (req, res, next) => {
+  const orderId = req.params.orderId
+  const orderItemId = req.params.orderItemId
+  Order.findById(orderId)
     .then(handle404)
-    .then(example => {
+    .then(order => {
       // throw an error if current user doesn't own `example`
-      requireOwnership(req, example)
+      requireOwnership(req, order)
       // delete the example ONLY IF the above didn't throw
-      example.deleteOne()
+      // example.deleteOne()
+      const filteredOrderItems = order.orderItems.filter(item => item._id != orderItemId)
+      order.orderItems = filteredOrderItems
+      return order.save()
     })
     // send back 204 and no content if the deletion succeeded
     .then(() => res.sendStatus(204))
