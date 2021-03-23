@@ -27,8 +27,8 @@ const requireToken = passport.authenticate('bearer', { session: false })
 // instantiate a router (mini app that only handles routes)
 const router = express.Router()
 
-// INDEX
-// GET /examples
+// INDEX all orders for tokenized customer
+// GET
 router.get('/orders', requireToken, (req, res, next) => {
   Order.find()
     .then(orders => {
@@ -43,8 +43,8 @@ router.get('/orders', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-// SHOW
-// GET /examples/5a7db6c74d55bc51bdf39793
+// SHOW order with ID
+// GET
 router.get('/orders/:id', requireToken, (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
   Order.findById(req.params.id)
@@ -55,8 +55,8 @@ router.get('/orders/:id', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-// CREATE
-// POST /examples
+// CREATE a new order for customer ID
+// POST
 router.post('/orders/:id', requireToken, (req, res, next) => {
   // set owner of new example to be current user
   req.body.order.owner = req.user.id
@@ -69,6 +69,20 @@ router.post('/orders/:id', requireToken, (req, res, next) => {
     // if an error occurs, pass it off to our error handler
     // the error handler needs the error message and the `res` object so that it
     // can send an error message back to the client
+    .catch(next)
+})
+
+// CREATE a new order item for order with ID
+// POST
+router.post('/orders/:id/order-item', requireToken, (req, res, next) => {
+  Order.findById(req.params.id)
+    .then(order => {
+      order.orderItems.push(req.body.orderItem)
+      return order.save()
+    })
+    .then(order => {
+      res.status(201).json({ order: order.toObject() })
+    })
     .catch(next)
 })
 

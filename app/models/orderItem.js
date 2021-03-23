@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const {capitalize} = require('../../lib/util')
+const { capitalize } = require('../../lib/util')
 
 const orderItemSchema = new mongoose.Schema({
   productName: {
