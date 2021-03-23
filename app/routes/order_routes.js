@@ -29,28 +29,28 @@ const router = express.Router()
 
 // INDEX
 // GET /examples
-router.get('/examples', requireToken, (req, res, next) => {
-  Example.find()
-    .then(examples => {
+router.get('/orders', requireToken, (req, res, next) => {
+  Order.find()
+    .then(orders => {
       // `examples` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
       // apply `.toObject` to each one
-      return examples.map(example => example.toObject())
+      return orders.map(order => order.toObject())
     })
     // respond with status 200 and JSON of the examples
-    .then(examples => res.status(200).json({ examples: examples }))
+    .then(orders => res.status(200).json({ orders: orders }))
     // if an error occurs, pass it to the handler
     .catch(next)
 })
 
 // SHOW
 // GET /examples/5a7db6c74d55bc51bdf39793
-router.get('/examples/:id', requireToken, (req, res, next) => {
+router.get('/orders/:id', requireToken, (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
-  Example.findById(req.params.id)
+  Order.findById(req.params.id)
     .then(handle404)
     // if `findById` is successful, respond with 200 and "example" JSON
-    .then(example => res.status(200).json({ example: example.toObject() }))
+    .then(order => res.status(200).json({ order: order.toObject() }))
     // if an error occurs, pass it to the handler
     .catch(next)
 })
