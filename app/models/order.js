@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const orderItem = require('./orderItem')
 
 const orderSchema = new mongoose.Schema({
   status: {
@@ -10,7 +11,8 @@ const orderSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Order',
     required: true
-  }
+  },
+  orderItems: [orderItem]
 }, {
   timestamps: true
 })
