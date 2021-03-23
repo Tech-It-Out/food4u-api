@@ -28,7 +28,6 @@ const userSchema = new mongoose.Schema({
   country: {
     type: String
   },
-  orders: [],
   token: String
 }, {
   timestamps: true,

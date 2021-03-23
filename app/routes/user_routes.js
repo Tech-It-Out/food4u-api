@@ -100,6 +100,7 @@ router.post('/sign-in', (req, res, next) => {
 // PATCH /change-password
 router.patch('/change-password', requireToken, (req, res, next) => {
   let user
+  console.log(req.user)
   // `req.user` will be determined by decoding the token payload
   User.findById(req.user.id)
     // save user outside the promise chain
@@ -135,6 +136,13 @@ router.delete('/sign-out', requireToken, (req, res, next) => {
   req.user.save()
     .then(() => res.sendStatus(204))
     .catch(next)
+})
+
+router.patch('/update', requireToken, (req, res, next) => {
+  let user
+  const userId = req.user.id
+  User.findById(userId)
+    .then(user => console.log('user data: ', user))
 })
 
 module.exports = router
