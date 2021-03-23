@@ -4,7 +4,7 @@ const express = require('express')
 const passport = require('passport')
 
 // pull in Mongoose model for examples
-const Example = require('../models/example')
+const Order = require('../models/order')
 
 // this is a collection of methods that help us detect situations when we need
 // to throw a custom error
@@ -57,14 +57,14 @@ router.get('/examples/:id', requireToken, (req, res, next) => {
 
 // CREATE
 // POST /examples
-router.post('/orders', requireToken, (req, res, next) => {
+router.post('/orders/:id', requireToken, (req, res, next) => {
   // set owner of new example to be current user
-  req.body.example.owner = req.user.id
+  req.body.order.owner = req.user.id
 
-  Example.create(req.body.example)
+  Order.create(req.body.order)
     // respond to successful `create` with status 201 and JSON of new "example"
-    .then(example => {
-      res.status(201).json({ example: example.toObject() })
+    .then(order => {
+      res.status(201).json({ example: order.toObject() })
     })
     // if an error occurs, pass it off to our error handler
     // the error handler needs the error message and the `res` object so that it
