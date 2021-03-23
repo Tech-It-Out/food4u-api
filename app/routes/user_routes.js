@@ -62,7 +62,6 @@ router.post('/sign-up', (req, res, next) => {
 router.post('/sign-in', (req, res, next) => {
   const pw = req.body.credentials.password
   let user
-
   // find a user based on the email that was passed
   User.findOne({ email: req.body.credentials.email })
     .then(record => {
@@ -101,7 +100,6 @@ router.post('/sign-in', (req, res, next) => {
 // PATCH /change-password
 router.patch('/change-password', requireToken, (req, res, next) => {
   let user
-  console.log('user data: ', req.user)
   // `req.user` will be determined by decoding the token payload
   User.findById(req.user.id)
     // save user outside the promise chain

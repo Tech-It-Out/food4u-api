@@ -10,6 +10,25 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  firstName: {
+    type: String
+  },
+  surname: {
+    type: String
+  },
+  street: {
+    type: String
+  },
+  apartment: {
+    type: String
+  },
+  state: {
+    type: String
+  },
+  country: {
+    type: String
+  },
+  orders: [],
   token: String
 }, {
   timestamps: true,
