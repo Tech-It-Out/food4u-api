@@ -30,6 +30,7 @@ router.get('/products', (req, res, next) => {
     .catch(next)
 })
 
+// todo: comment out for deployment
 // SHOW product with ID
 // GET
 router.get('/products/:id', (req, res, next) => {
@@ -42,7 +43,7 @@ router.get('/products/:id', (req, res, next) => {
     .catch(next)
 })
 
-// Remove this route for deployed version
+// todo: comment out for deployment
 // CREATE a new product
 // POST
 router.post('/products', (req, res, next) => {
@@ -57,7 +58,7 @@ router.post('/products', (req, res, next) => {
     .catch(next)
 })
 
-// Delete this route for deployed version
+// todo: comment out for deployment
 // DESTROY product
 // DELETE
 router.delete('/products/:id', (req, res, next) => {
