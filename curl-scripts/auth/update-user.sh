@@ -10,13 +10,12 @@ curl "${API}${URL_PATH}/" \
   --header "Content-Type: application/json" \
   --data '{
     "user": {
-      "email": "'"${EMAIL}"'",
       "firstName": "'"${FIRSTNAME}"'",
       "surname": "'"${SURNAME}"'",
       "street": "'"${STREET}"'",
       "apartment": "'"${APARTMENT}"'",
       "state": "'"${STATE}"'",
-      "country": "'"${COUNTRY}"'",
+      "country": "'"${COUNTRY}"'"
     }
   }'
 
