@@ -4,8 +4,9 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 
 // require route files
-const exampleRoutes = require('./app/routes/example_routes')
+const orderRoutes = require('./app/routes/order_routes')
 const userRoutes = require('./app/routes/user_routes')
+const productRoutes = require('./app/routes/product_routes')
 
 // require middleware
 const errorHandler = require('./lib/error_handler')
@@ -49,6 +50,10 @@ app.use(auth)
 // JS objects before they reach the route files.
 // The method `.use` sets up middleware for the Express application
 app.use(express.json())
+
+// delineate the spacing for all json logging to the console
+app.set('json spaces', 2)
+
 // this parses requests sent by `$.ajax`, which use a different content type
 app.use(express.urlencoded({ extended: true }))
 
@@ -56,8 +61,9 @@ app.use(express.urlencoded({ extended: true }))
 app.use(requestLogger)
 
 // register route files
-app.use(exampleRoutes)
+app.use(orderRoutes)
 app.use(userRoutes)
+app.use(productRoutes)
 
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be

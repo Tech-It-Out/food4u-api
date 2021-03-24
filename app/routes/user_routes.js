@@ -62,7 +62,6 @@ router.post('/sign-up', (req, res, next) => {
 router.post('/sign-in', (req, res, next) => {
   const pw = req.body.credentials.password
   let user
-
   // find a user based on the email that was passed
   User.findOne({ email: req.body.credentials.email })
     .then(record => {
@@ -101,6 +100,8 @@ router.post('/sign-in', (req, res, next) => {
 // PATCH /change-password
 router.patch('/change-password', requireToken, (req, res, next) => {
   let user
+  console.log('req.user data: ', req.user)
+  console.log('req  data: ', req)
   // `req.user` will be determined by decoding the token payload
   User.findById(req.user.id)
     // save user outside the promise chain
@@ -135,6 +136,23 @@ router.delete('/sign-out', requireToken, (req, res, next) => {
   // save the token and respond with 204
   req.user.save()
     .then(() => res.sendStatus(204))
+    .catch(next)
+})
+
+router.patch('/update', requireToken, (req, res, next) => {
+  const userData = req.body.user
+  const userId = req.user.id
+  User.findById(userId)
+    .then(user => {
+      for (const field in userData) {
+        if (userData[field] === '') continue
+        user[field] = userData[field]
+      }
+      return user.save()
+    })
+    .then(user => {
+      res.status(200).json({ user: user.toObject() })
+    })
     .catch(next)
 })
 

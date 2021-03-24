@@ -1,17 +1,16 @@
 #!/bin/bash
 
 API="http://localhost:4741"
-URL_PATH="/examples"
+URL_PATH="/orders"
 
 curl "${API}${URL_PATH}" \
   --include \
   --request POST \
-  --header "Content-Type: application/json" \
   --header "Authorization: Bearer ${TOKEN}" \
+  --header "Content-Type: application/json" \
   --data '{
-    "example": {
-      "text": "'"${TEXT}"'",
-      "title": "'"${TITLE}"'"
+    "order": {
+      "status": "'"cart"'"
     }
   }'
 
