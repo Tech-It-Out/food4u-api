@@ -28,6 +28,7 @@ const router = express.Router()
 // SIGN UP
 // POST /sign-up
 router.post('/sign-up', (req, res, next) => {
+  console.log('credentials data: ', req.body.credentials)
   // start a promise chain, so that any errors will pass to `handle`
   Promise.resolve(req.body.credentials)
     // reject any requests where `credentials.password` is not present, or where
@@ -44,6 +45,8 @@ router.post('/sign-up', (req, res, next) => {
     .then(hash => {
       // return necessary params to create a user
       return {
+        firstName: req.body.credentials.firstName,
+        surname: req.body.credentials.surname,
         email: req.body.credentials.email,
         hashedPassword: hash
       }
