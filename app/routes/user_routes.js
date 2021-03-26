@@ -21,6 +21,7 @@ const User = require('../models/user')
 // so that a token MUST be passed for that route to be available
 // it will also set `res.user`
 const requireToken = passport.authenticate('bearer', { session: false })
+const removeBlanks = require('../../lib/remove_blank_fields')
 
 // instantiate a router (mini app that only handles routes)
 const router = express.Router()
@@ -142,7 +143,7 @@ router.delete('/sign-out', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-router.patch('/update', requireToken, (req, res, next) => {
+router.patch('/update', requireToken, removeBlanks, (req, res, next) => {
   const userData = req.body.user
   const userId = req.user.id
   User.findById(userId)
