@@ -3,7 +3,7 @@ const express = require('express')
 // Passport docs: http://www.passportjs.org/docs/
 const passport = require('passport')
 
-// pull in Mongoose model for examples
+// pull in Mongoose model for orders
 const Order = require('../models/order')
 
 // this is a collection of methods that help us detect situations when we need
@@ -58,8 +58,6 @@ router.get('/orders/:id', requireToken, (req, res, next) => {
 router.post('/orders', requireToken, (req, res, next) => {
   // set owner of new example to be current user
   req.body.order.owner = req.user.id
-  console.log(req.body)
-  console.log(req.user)
 
   Order.create(req.body.order)
     // respond to successful `create` with status 201 and JSON of new "example"
