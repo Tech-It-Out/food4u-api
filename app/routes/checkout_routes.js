@@ -11,7 +11,7 @@ const router = express.Router()
 const requireToken = passport.authenticate('bearer', { session: false })
 
 // setting the domain to either the deployed app or the localhost on domain 7165
-const YOUR_DOMAIN = process.env.CLIENT_ORIGIN ? 'https://tech-it-out.github.io' : 'http://localhost:7165'
+const YOUR_DOMAIN = process.env.CLIENT_ORIGIN ? 'https://tech-it-out.github.io/food4u-client' : 'http://localhost:7165'
 
 router.post('/create-checkout-session',
   requireToken,
