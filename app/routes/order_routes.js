@@ -29,9 +29,10 @@ const router = express.Router()
 router.get('/orders', requireToken, (req, res, next) => {
   Order.find()
     .then(orders => {
-      // `examples` will be an array of Mongoose documents
-      // we want to convert each one to a POJO, so we use `.map` to
-      // apply `.toObject` to each one
+      // filter all orders for owner key matching owner Id
+      return orders.filter(order => order.owner == req.user.id)
+    })
+    .then(orders => {
       return orders.map(order => order.toObject())
     })
     // respond with status 200 and JSON of the examples
@@ -57,6 +58,8 @@ router.get('/orders/:id', requireToken, (req, res, next) => {
 router.post('/orders', requireToken, (req, res, next) => {
   // set owner of new example to be current user
   req.body.order.owner = req.user.id
+  console.log(req.body)
+  console.log(req.user)
 
   Order.create(req.body.order)
     // respond to successful `create` with status 201 and JSON of new "example"
