@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 const { capitalize } = require('../../lib/util')
 
 const orderItemSchema = new mongoose.Schema({
+  productId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Product',
+    required: true
+  },
   productName: {
     type: String,
     required: true,

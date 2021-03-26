@@ -21,6 +21,7 @@ const User = require('../models/user')
 // so that a token MUST be passed for that route to be available
 // it will also set `res.user`
 const requireToken = passport.authenticate('bearer', { session: false })
+const removeBlanks = require('../../lib/remove_blank_fields')
 
 // instantiate a router (mini app that only handles routes)
 const router = express.Router()
@@ -28,6 +29,7 @@ const router = express.Router()
 // SIGN UP
 // POST /sign-up
 router.post('/sign-up', (req, res, next) => {
+  console.log('credentials data: ', req.body.credentials)
   // start a promise chain, so that any errors will pass to `handle`
   Promise.resolve(req.body.credentials)
     // reject any requests where `credentials.password` is not present, or where
@@ -44,6 +46,8 @@ router.post('/sign-up', (req, res, next) => {
     .then(hash => {
       // return necessary params to create a user
       return {
+        firstName: req.body.credentials.firstName,
+        surname: req.body.credentials.surname,
         email: req.body.credentials.email,
         hashedPassword: hash
       }
@@ -139,7 +143,7 @@ router.delete('/sign-out', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-router.patch('/update', requireToken, (req, res, next) => {
+router.patch('/update', requireToken, removeBlanks, (req, res, next) => {
   const userData = req.body.user
   const userId = req.user.id
   User.findById(userId)

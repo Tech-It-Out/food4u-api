@@ -52,7 +52,7 @@ router.get('/orders/:id', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-// CREATE a new order for customer ID
+// CREATE a new order for customer with ID
 // POST
 router.post('/orders', requireToken, (req, res, next) => {
   // set owner of new example to be current user
@@ -69,7 +69,21 @@ router.post('/orders', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-// CREATE a new order item for order with ID
+// UPDATE order with ID
+// PATCH
+router.patch('/orders/:id', requireToken, (req, res, next) => {
+  const newOrderStatus = req.body.order.status
+
+  Order.findById(req.params.id)
+    .then(order => {
+      order.status = newOrderStatus
+      return order.save()
+    })
+    .then(() => res.sendStatus(204))
+    .catch(next)
+})
+
+// CREATE a new order-item for order with ID
 // POST
 router.post('/orders/:id/orderItem', requireToken, (req, res, next) => {
   Order.findById(req.params.id)
@@ -83,7 +97,7 @@ router.post('/orders/:id/orderItem', requireToken, (req, res, next) => {
     .catch(next)
 })
 
-// UPDATE
+// UPDATE order-item
 // PATCH
 router.patch('/orders/:orderId/orderItem/:orderItemId', requireToken, (req, res, next) => {
   const orderItemId = req.params.orderItemId

@@ -12,7 +12,8 @@ curl "${API}${URL_PATH}/${ID}/orderItem" \
     "orderItem": {
       "productName": "'"${PRODUCT}"'",
       "price": "'"${PRICE}"'",
-      "quantity": "'"${QUANTITY}"'"
+      "quantity": "'"${QUANTITY}"'",
+      "productId": "'"${PRODID}"'"
     }
   }'
 
