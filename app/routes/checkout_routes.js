@@ -33,8 +33,8 @@ router.post('/create-checkout-session',
         }
       ],
       mode: 'payment',
-      success_url: `${YOUR_DOMAIN}/#/`,
-      cancel_url: `${YOUR_DOMAIN}/#/`
+      success_url: `${YOUR_DOMAIN}/#/cart`,
+      cancel_url: `${YOUR_DOMAIN}/#/cart`
     })
     res.json({ id: session.id })
   })

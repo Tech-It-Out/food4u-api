@@ -160,4 +160,12 @@ router.patch('/update', requireToken, removeBlanks, (req, res, next) => {
     .catch(next)
 })
 
+router.get('/user', requireToken, (req, res, next) => {
+  User.findById(req.user.id)
+    .then(user => {
+      res.status(200).json({ user: user.toObject() })
+    })
+    .catch(next)
+})
+
 module.exports = router
