@@ -63,3 +63,5 @@ For back-end specific planning issues the team used GitHub's project management 
 ## Next Development Phase
 1. Build a stock-keeping / inventory balance into the product collection such that customers can only check out items / add items to the cart that are in stock.
 1. instead of using Stripe's hosted payment page, build proprietary one that enables the customer to never leave the company website
+1. Store product images in dedicated storage solution instead of Imgur
+1. Add favourites resource
