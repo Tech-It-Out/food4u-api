@@ -26,34 +26,48 @@ The api manages 4 main resources.
 
 ## Routes
 ### User / Customer
-[Connie to update table]
+
 
 Verb | URI | Body | Headers | Status Response | Body Response
 --- | --- | --- | --- | --- | ---
-[POST] | [/sign-up] | [credentials] | [empty] | [201, Created] | [user obj]
+POST | /sign-up | credentials | token | 201, Created | sign up user
+POST | /sign-in | credentials | token | 201, Created | sign in user
+PATCH| /change-password| credentials | token | 204, No Content | change user password
+DELETE | /sign-out | credentials | token | 204, No Content | delete user
+PATCH| /update | credentials | token | 200, OK | update user
 
 ### Order
-[Connie to update table]
+
 
 Verb | URI | Body | Headers | Status Response | Body Response
 --- | --- | --- | --- | --- | ---
-[POST] | [/sign-up] | [credentials] | [empty] | [201, Created] | [user obj]
+GET | /orders | n/a | token | 200, OK | show orders
+GET | /orders/:id | n/a | token | 200, OK | show order
+POST | /orders | order object with status cart| token | 201, CREATED | create order
+PATCH | /orders/:id | order object | token | 204, No Content | update order
+DELETE| /orders/:id | n/a | token | 204, No Content | delete order
+
+
 
 ### Order Item
-[Connie to update table]
 
 Verb | URI | Body | Headers | Status Response | Body Response
 --- | --- | --- | --- | --- | ---
-[POST] | [/sign-up] | [credentials] | [empty] | [201, Created] | [user obj]
+POST | /orderItem | order item object | token | 201, Created | create order item
+PATCH | /orderItem/:id | order item object | token | 201, Created | update order item
+DELETE | /orderItem/:id | n/a | token | 204, No Content | delete order item
+
 
 ### Product
 Please note that these routes are not customer facing and are only to be used by the site admin!
 
-[Connie to update table]
-
 Verb | URI | Body | Headers | Status Response | Body Response
 --- | --- | --- | --- | --- | ---
-[POST] | [/sign-up] | [credentials] | [empty] | [201, Created] | [user obj]
+GET | /products | n/a | token | 200, OK | show products
+GET | /products/:id | n/a| token | 200, OK | show product
+POST | /products | product item object | token | 201, CREATED | create product
+DELETE | /products/:id| n/a | token | 204, No Content | delete product
+
 
 ## Planning Documentation
 The development team used GitHub's project management [Kanban](https://github.com/orgs/Tech-It-Out/projects/2?add_cards_query=is%3Aopen) for macro project development and planning purpose.
