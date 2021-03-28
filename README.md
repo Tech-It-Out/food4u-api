@@ -4,7 +4,7 @@
 
 The genesis of Food4U is to add local distribution channels for farmers and to offer locally farmed seasonal produce to customers.
 ### Company Story
-We pride ourselves in delivering fresh produce to your home! All our products are sourced exclusively from local farmers. Which has the added benefit of being environmentally friendly. Our produce is local and seasonal so please bear with us if items are currently unavailable - our farmers are working hard on the next harvest! It goes without saying that all our farmers are exclusively No-GMO and all produce is certified organic. Save time by shopping on our app and we will deliver the products right to your home. We use Stripe to process your payment.
+We pride ourselves in delivering fresh produce to your home! All our products are sourced exclusively from local farmers. This has the added benefit of being environmentally friendly. Our produce is local and seasonal so please bear with us if items are currently unavailable - our farmers are working hard on the next harvest! It goes without saying that all our farmers are exclusively No-GMO and all produce is certified organic. Save time by shopping on our app and we will deliver the products right to your home. We use Stripe to process your payment.
 
 ## Back-End Application
 This repo is the backend of the project. It was written in Node.js and uses Express to handle the routes for the various requests. Mongoose and MongoDB are used for database storage of user generated and company data. Other libraries and frameworks used include Stripe, bcrypt, cors, passport, and passport-http-bearer.
@@ -56,9 +56,9 @@ Verb | URI | Body | Headers | Status Response | Body Response
 [POST] | [/sign-up] | [credentials] | [empty] | [201, Created] | [user obj]
 
 ## Planning Documentation
-[Sven to load Trello Kanban onto Github and reference here]
+The development team used GitHub's project management [Kanban](https://github.com/orgs/Tech-It-Out/projects/2?add_cards_query=is%3Aopen) for macro project development and planning purpose.
 
-[Sven to reference the back-end repo Kanbans]
+For back-end specific planning issues the team used GitHub's project management [Kanban](https://github.com/Tech-It-Out/food4u-api/projects) that sits inside the repo.
 
 ## Next Development Phase
 1. Build a stock-keeping / inventory balance into the product collection such that customers can only check out items / add items to the cart that are in stock.
