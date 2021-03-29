@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { capitalize } = require('../../lib/util')
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -11,10 +12,12 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   firstName: {
-    type: String
+    type: String,
+    set: capitalize
   },
   surname: {
-    type: String
+    type: String,
+    set: capitalize
   },
   street: {
     type: String
