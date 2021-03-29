@@ -77,12 +77,12 @@ Verb | URI | Body | Headers | Status Response | Body Response
 POST | /create-checkout-session | checkout object data | token | 200, OK | redirect to checkout payments page
 
 #### Stripe Checkout logic
-We decided to build out the checkout experience for security reason and as a challenge through the backend we built using Express. There are three parts to our checkout experience:
-- Post route that contains the body of the data we're sending
-- Only users with a token are allowed to checkout
-- Custom Middleware (`get_total_due_from_cart.js`) built by the team that passes the user and correct cart data to be able to modify the values of the stripe page on checkout.
-- If successful, customer gets redirected to their order history page showing the most recent order at the top so user stays logged in through the progress by storing the user token in local storage on the front end. The front end then calls most recent order history to display to the customer.
-- If payment failed, customer gets redirected to <>, while staying logged in.
+For security reasons, the team built the checkout on the back-end. This prevents malicious interjecting of data on the front-end. All checkout parameters such as total price are calculated on the back-end and passed to the front-end. There are three core parts to the checkout:
+- Post route that contains the body of the data being sent
+- Only authenticated users (tokenised) can be approved for checkout
+- Custom middleware (`get_total_due_from_cart.js`), built by the team, passes the user and correct cart data in order to provide total price charged to Stripe's hosted checkout page.
+- If payments processing was successful, customers get redirected to their order history page, showing the most recent order at the top. Users stay logged in throughout the progress by storing the user token in session storage on the front end. The front end then calls most recent order history to display to the customer.
+- If payment processing was unsuccessful, customers get redirected to their cart.
 
 ## Planning Documentation
 The development team used GitHub's project management [Kanban](https://github.com/orgs/Tech-It-Out/projects/2?add_cards_query=is%3Aopen) for macro project development and planning purpose.
