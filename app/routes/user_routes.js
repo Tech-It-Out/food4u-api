@@ -5,6 +5,7 @@ const crypto = require('crypto')
 const passport = require('passport')
 // bcrypt docs: https://github.com/kelektiv/node.bcrypt.js
 const bcrypt = require('bcrypt')
+const geoip = require('geoip-lite')
 
 // see above for explanation of "salting", 10 rounds is recommended
 const bcryptSaltRounds = 10
@@ -64,6 +65,9 @@ router.post('/sign-up', (req, res, next) => {
 // SIGN IN
 // POST /sign-in
 router.post('/sign-in', (req, res, next) => {
+  const ip = req.ip
+  console.log('req ip info: ', ip)
+  console.log('geoip data received: ', geoip.lookup(ip))
   const pw = req.body.credentials.password
   let user
   // find a user based on the email that was passed
