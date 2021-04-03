@@ -67,10 +67,10 @@ router.post('/sign-up', (req, res, next) => {
 router.post('/sign-in', (req, res, next) => {
   const ip = req.ip
   const headersIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress
-  console.log('req ip info:', ip)
-  console.log('geoip data received:', geoip.lookup(ip))
-  console.log('req ip info:', headersIP)
-  console.log('geoip data received:', geoip.lookup(headersIP))
+  console.log('req ip info :', ip)
+  console.log('geoip data received ip:', geoip.lookup(ip))
+  console.log('headersIP info :', headersIP)
+  console.log('geoip data received headersIP:', geoip.lookup(headersIP))
   const pw = req.body.credentials.password
   let user
   // find a user based on the email that was passed
