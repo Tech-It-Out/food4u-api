@@ -12,8 +12,8 @@ async function setup (event, context, callback) {
 }
 
 async function handler (event, context, callback) {
-  if (serverlessExpressInstance) return serverlessExpressInstance(event, context, callback)
-  return setup(event, context, callback)
+  if (serverlessExpressInstance) return await serverlessExpressInstance(event, context, callback)
+  return await setup(event, context, callback)
 }
 
 exports.handler = handler
