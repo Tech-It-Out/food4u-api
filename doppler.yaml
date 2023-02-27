@@ -1,0 +1,3 @@
+setup:
+  project: food4u-api
+  config: dev
