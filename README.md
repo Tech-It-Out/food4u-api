@@ -11,10 +11,10 @@ This repo is the backend of the project. It was written in Node.js and uses Expr
 
 ## Hosted Applications
 ### Back-end
-The back-end is deployed on [Heroku](https://salty-beyond-56482.herokuapp.com/) and the repository can be found on [GitHub](https://github.com/Tech-It-Out/food4u-api)
+The back-end is deployed with Serverless on [AWS Lambda](https://gskdahngmj.execute-api.us-east-1.amazonaws.com/prod) and the repository can be found on [GitHub](https://github.com/Tech-It-Out/food4u-api)
 
 ### Front-end
-The front-end app is hosted on [GitHub Pages](https://tech-it-out.github.io/Food4U-client/#/) and the repository can be found on [GitHub](https://github.com/Tech-It-Out/Food4U-client)
+The front-end app is hosted on [AWS Amplify](https://main.d1u4zd8arazu9j.amplifyapp.com) and the repository can be found on [GitHub](https://github.com/Tech-It-Out/Food4U-client)
 
 ## Entity Relationship Diagram
 The api manages 4 main resources.
