@@ -28,53 +28,48 @@ The api manages 4 main resources.
 ### User / Customer
 
 
-Verb | URI | Body | Headers | Status Response | Body Response
---- | --- | --- | --- | --- | ---
-POST | /sign-up | credentials | token | 201, Created | sign up user
-POST | /sign-in | credentials | token | 201, Created | sign in user
-PATCH| /change-password| credentials | token | 204, No Content | change user password
-DELETE | /sign-out | credentials | token | 204, No Content | delete user
-PATCH| /update | credentials | token | 200, OK | update user
+| Verb   | URI              | Body        | Headers | Status Response | Body Response        |
+|--------|------------------|-------------|---------|-----------------|----------------------|
+| POST   | /sign-up         | credentials | token   | 201, Created    | sign up user         |
+| POST   | /sign-in         | credentials | token   | 201, Created    | sign in user         |
+| PATCH  | /change-password | credentials | token   | 204, No Content | change user password |
+| DELETE | /sign-out        | credentials | token   | 204, No Content | delete user          |
+| PATCH  | /update          | credentials | token   | 200, OK         | update user          |
 
 ### Order
 
 
-Verb | URI | Body | Headers | Status Response | Body Response
---- | --- | --- | --- | --- | ---
-GET | /orders | n/a | token | 200, OK | show orders
-GET | /orders/:id | n/a | token | 200, OK | show order
-POST | /orders | order object with status cart| token | 201, CREATED | create order
-PATCH | /orders/:id | order object | token | 204, No Content | update order
-DELETE| /orders/:id | n/a | token | 204, No Content | delete order
-
-
+| Verb   | URI         | Body                          | Headers | Status Response | Body Response |
+|--------|-------------|-------------------------------|---------|-----------------|---------------|
+| GET    | /orders     | n/a                           | token   | 200, OK         | show orders   |
+| GET    | /orders/:id | n/a                           | token   | 200, OK         | show order    |
+| POST   | /orders     | order object with status cart | token   | 201, CREATED    | create order  |
+| PATCH  | /orders/:id | order object                  | token   | 204, No Content | update order  |
+| DELETE | /orders/:id | n/a                           | token   | 204, No Content | delete order  |
 
 ### Order Item
 
-Verb | URI | Body | Headers | Status Response | Body Response
---- | --- | --- | --- | --- | ---
-POST | /orderItem | order item object | token | 201, Created | create order item
-PATCH | /orderItem/:id | order item object | token | 201, Created | update order item
-DELETE | /orderItem/:id | n/a | token | 204, No Content | delete order item
-
+| Verb   | URI            | Body              | Headers | Status Response | Body Response     |
+|--------|----------------|-------------------|---------|-----------------|-------------------|
+| POST   | /orderItem     | order item object | token   | 201, Created    | create order item |
+| PATCH  | /orderItem/:id | order item object | token   | 201, Created    | update order item |
+| DELETE | /orderItem/:id | n/a               | token   | 204, No Content | delete order item |
 
 ### Product
 Please note that these routes are not customer facing and are only to be used by the site admin!
 
-Verb | URI | Body | Headers | Status Response | Body Response
---- | --- | --- | --- | --- | ---
-GET | /products | n/a | token | 200, OK | show products
-GET | /products/:id | n/a| token | 200, OK | show product
-POST | /products | product item object | token | 201, CREATED | create product
-DELETE | /products/:id| n/a | token | 204, No Content | delete product
-  
-  
-  
+| Verb   | URI           | Body                | Headers | Status Response | Body Response  |
+|--------|---------------|---------------------|---------|-----------------|----------------|
+| GET    | /products     | n/a                 | token   | 200, OK         | show products  |
+| GET    | /products/:id | n/a                 | token   | 200, OK         | show product   |
+| POST   | /products     | product item object | token   | 201, CREATED    | create product |
+| DELETE | /products/:id | n/a                 | token   | 204, No Content | delete product |
+
 ### Stripe Checkout
 
-Verb | URI | Body | Headers | Status Response | Body Response
---- | --- | --- | --- | --- | ---
-POST | /create-checkout-session | checkout object data | token | 200, OK | redirect to checkout payments page
+| Verb | URI                      | Body                 | Headers | Status Response | Body Response                      |
+|------|--------------------------|----------------------|---------|-----------------|------------------------------------|
+| POST | /create-checkout-session | checkout object data | token   | 200, OK         | redirect to checkout payments page |
 
 #### Stripe Checkout logic
 For security reasons, the team built the checkout on the back-end. This prevents malicious interjecting of data on the front-end. All checkout parameters such as total price are calculated on the back-end and passed to the front-end. There are three core parts to the checkout:
