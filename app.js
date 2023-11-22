@@ -21,6 +21,9 @@ const config = require('./config/config')
 // require configured passport authentication middleware
 const auth = require('./lib/auth')
 
+// define port for API to run on
+const port = process.env.PORT || 3001
+
 async function startApp () {
   // establish database connection
   // use new version of URL parser
@@ -70,9 +73,10 @@ async function startApp () {
   // passed any error messages from them
   app.use(errorHandler)
 
-  return app
+  // run API on designated port
+  app.listen(port, () => {
+    console.log('listening on port ' + port)
+  })
 }
 
-module.exports = {
-  startApp
-}
+startApp()

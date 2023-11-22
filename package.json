@@ -4,14 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "start:serverless": "doppler run -c dev -- serverless offline --localEnvironment true --httpPort 3001",
-    "test": "mocha --exit",
-    "server": "doppler run -- nodemon server.js",
-    "serve": "doppler run -- nodemon server.js",
-    "s": "doppler run -- nodemon server.js",
-    "debug-server": "DEBUG=express:* nodemon server.js",
-    "deploy:serverless": "doppler run -c prod -- serverless deploy --verbose --force"
+    "start": "node app.js",
+    "serve": "doppler run -- nodemon app.js",
+    "debug-server": "DEBUG=express:* nodemon app.js"
   },
   "author": "",
   "license": "ISC",
